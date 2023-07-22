@@ -10,6 +10,12 @@ const app = express();
 app.use(cors());
 
 
+app.use((_, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
+
 app.get("/api/weather", (req, res) => {
     const city = req.query.city;
     const options = {
