@@ -16,8 +16,8 @@ app.use((_, res, next) => {
   });
 
 
-app.get("/api/weather", (req, res) => {
-    const city = req.query.city;
+app.get("/api/weather/:city", (req, res) => {
+    const city = req.params.city;
     const options = {
         method: "GET",
         url: `http://api.weatherapi.com/v1/current.json?key=${process.env.API_KEY}&q=${city}&aqi=no`,
@@ -35,8 +35,8 @@ app.get("/api/weather", (req, res) => {
             console.log(err)
         })
 })
-app.get("/api/forcast", (req, res) => {
-    const city = req.query.city;
+app.get("/api/forcast/:city", (req, res) => {
+    const city = req.params.city;
     const options = {
         method: "GET",
         url: `http://api.weatherapi.com/v1/forecast.json?key=${process.env.API_KEY}&q=${city}&days=7&aqi=no&alerts=no`,
